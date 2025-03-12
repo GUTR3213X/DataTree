@@ -1,67 +1,74 @@
-O arquivo `README.md` do Git geralmente é formatado usando **Markdown**, uma linguagem de marcação leve e fácil de escrever. Aqui estão algumas diretrizes básicas para formatá-lo corretamente:
+# Projeto de Gerenciamento de Nodes
 
----
+Este projeto implementa um sistema de gerenciamento de nós (nodes) em uma estrutura de árvore, permitindo criação, remoção e manipulação de nós de forma interativa no terminal.
 
-### **1. Estrutura Básica de um README**
-```md
-# Nome do Projeto
-Uma breve descrição do projeto.
+## Estrutura do Projeto
 
-## Índice
-- [Sobre](#sobre)
-- [Instalação](#instalacao)
-- [Uso](#uso)
-- [Contribuição](#contribuicao)
-- [Licença](#licenca)
+O projeto é composto pelos seguintes arquivos:
 
-## Sobre
-Explique o propósito do projeto, seus principais recursos e para quem ele é útil.
+- `main.py`: Arquivo principal que executa a aplicação e gerencia as interações com o usuário.
+- `Nodes.py`: Define a classe `BaseNode`, que representa um nó na estrutura de árvore e fornece funcionalidades para manipulação dos nós.
+- `TerminalActions.py`: Implementa um sistema de ações interativas no terminal.
 
 ## Instalação
-Passos para instalar o projeto:
+
+### Pré-requisitos
+
+Este projeto requer Python 3. Para instalar as dependências, utilize:
+
 ```sh
-# Exemplo de comando de instalação
-git clone https://github.com/usuario/repo.git
-cd repo
+pip install colorama
 ```
 
-## Uso
-Explique como usar o projeto, incluindo exemplos:
-```python
-print("Hello, world!")
+## Como Usar
+
+Execute o arquivo principal:
+
+```sh
+python main.py
 ```
 
-## Contribuição
-Explique como outras pessoas podem contribuir.
+O programa apresentará uma interface interativa para gerenciar os nós.
 
-## Licença
-Especifique a licença do projeto. Exemplo:
-Este projeto está sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-```
+## Funcionalidades
 
----
+### Principais Comandos
 
-### **2. Elementos de Formatação**
-| Elemento  | Markdown |
-|-----------|---------|
-| Títulos   | `# Título` (de 1 a 6 `#` para níveis) |
-| Negrito   | `**Texto**` ou `__Texto__` |
-| Itálico   | `*Texto*` ou `_Texto_` |
-| Código inline | `` `codigo` `` |
-| Bloco de código | \`\`\`linguagem <br> código <br> \`\`\` |
-| Listas não ordenadas | `- Item` ou `* Item` |
-| Listas ordenadas | `1. Item` |
-| Links | `[Texto](URL)` |
-| Imagens | `![Alt Text](URL-da-imagem)` |
-| Citações | `> Citação` |
-| Tabelas | `| Cabeçalho | Cabeçalho |`<br>`|----------|----------|`<br>`| Dado 1   | Dado 2   |` |
+- `1`: Criar um novo nó.
+- `2`: Criar um novo nó raiz.
+- `3`: Remover um nó.
+- `4`: Remover um nó raiz.
+- `5`: Editar ou adicionar um campo ao nó.
+- `e`: Expandir ou recolher um nó.
+- `v`: Visualizar dados do nó.
+- `w`: Mover para cima.
+- `s`: Mover para baixo.
+- `q`: Sair do programa.
+- `f`: Acessar opções de arquivo (Salvar/Carregar).
 
----
+### Salvamento e Carregamento de Dados
 
-### **3. Dicas Adicionais**
-- **Seja direto**: O README deve ser claro e objetivo.
-- **Inclua exemplos**: Demonstre como usar o projeto.
-- **Adicione um badge**: Utilize badges do [shields.io](https://shields.io/) para mostrar status do build, cobertura de testes, etc.
-- **Inclua capturas de tela**: Para projetos com interface gráfica.
+O programa permite salvar e carregar a estrutura de nós usando arquivos `.pkl`.
 
-Se precisar de um modelo mais detalhado, me avise! 🚀
+- Para salvar, selecione a opção de arquivo e informe um nome.
+- Para carregar, informe o nome do arquivo salvo anteriormente.
+
+## Estrutura de Classes
+
+### `BaseNode` (Nodes.py)
+
+Representa um nó na árvore, armazenando dados e permitindo a manipulação de filhos e pais.
+
+- `append(node)`: Adiciona um nó filho.
+- `remove(checks)`: Remove nós que atendem a certos critérios.
+- `prettystr()`: Retorna uma string formatada da árvore.
+
+### `Action` e `Actions` (TerminalActions.py)
+
+- `Action`: Representa uma ação acionável no terminal.
+- `Actions`: Conjunto de ações interativas exibidas no terminal.
+
+## Autor
+
+Este projeto foi desenvolvido para fins educacionais e experimentação com estruturas de dados em Python.
+
