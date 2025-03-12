@@ -1,4 +1,8 @@
-**1. Estrutura Básica de um README**
+O arquivo `README.md` do Git geralmente é formatado usando **Markdown**, uma linguagem de marcação leve e fácil de escrever. Aqui estão algumas diretrizes básicas para formatá-lo corretamente:
+
+---
+
+### **1. Estrutura Básica de um README**
 ```md
 # Nome do Projeto
 Uma breve descrição do projeto.
