@@ -67,8 +67,3 @@ Representa um nó na árvore, armazenando dados e permitindo a manipulação de 
 
 - `Action`: Representa uma ação acionável no terminal.
 - `Actions`: Conjunto de ações interativas exibidas no terminal.
-
-## Autor
-
-Este projeto foi desenvolvido para fins educacionais e experimentação com estruturas de dados em Python.
-
