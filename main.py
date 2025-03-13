@@ -99,13 +99,15 @@ class Main:
             self.super['closed'] = False
     def remover_node(self):
         node = self.selecionado()
-        if node.parent is not None and node.parent is not self.super:
+        if node.parent is not None and node.parent != self.super:
             if len(node.parent.children) <= 1:
                 node.parent['closed'] = None
-        del node
+        node.deactivate()
     def remover_root(self):
-        root = self.selecionado().root
-        del root
+        x = self.selecionado()
+        while x.parent != self.super:
+            x = x.parent
+        x.deactivate()
     def editar_campo(self):
         chave = input('Chave: ')
         valor = input('Valor: ')
@@ -123,21 +125,23 @@ class Main:
         r = ''
         print(f'Lendo dados de "{self.selecionado()["name"]}"...', end='')
         for k, v in self.selecionado().data.items():
-            r += f'\n{repr(k):.<20}{repr(v):>20} ({type(v).__name__})'
+            r += f'\n{repr(k):.<20}{repr(v):.>20} ({type(v).__name__})'
         print(r)
-        input('Precione <ENTER> para continuar...')
+        input('Precione <ENTER> para continuar.')
     def cima(self, n: int=1):
         self.desselecionar()
         self.index -= n
         self.normalizar()
         self.selecionar()
+        while PARENT_IS_CLOSED(self.selecionado()):
+            self.cima(1)
     def baixo(self, n: int=1):
         self.desselecionar()
         self.index += n
         self.normalizar()
         self.selecionar()
         while PARENT_IS_CLOSED(self.selecionado()):
-                self.baixo(1)
+            self.baixo(1)
     def parar(self):
         self.running = False
 
@@ -178,7 +182,7 @@ class Main:
                 self.hud()
                 self.baixo(0)
             except Exception as e:
-                input(red(f'{type(e).__name__}: {e}'))
+                input(red(f'{type(e).__name__}: {e} '))
 
 if __name__ == '__main__':
     Main().run()

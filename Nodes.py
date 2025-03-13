@@ -126,6 +126,9 @@ class BaseNode:
         return self.data.get(key)
     def __setitem__(self, key: Any, value: Any):
         self.data[key] = value
-    def __del__(self):
+    def deactivate(self):
         self.activated = False
+        if self.parent is not None:
+            index = self.parent.children.index(self)
+            del self.parent.children[index]
         self.root.reconfigure()
