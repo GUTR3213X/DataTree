@@ -1,4 +1,4 @@
-from Nodes import BaseNode
+from Nodes import BaseNode, get
 from typing import Any, Callable, Optional
 from TerminalActions import Action, Actions
 from colorama import Fore
@@ -133,14 +133,14 @@ class Main:
         self.index -= n
         self.normalizar()
         self.selecionar()
-        while PARENT_IS_CLOSED(self.selecionado()):
+        while get([self.selecionado()]+self.selecionado().parents, PARENT_IS_CLOSED):
             self.cima(1)
     def baixo(self, n: int=1):
         self.desselecionar()
         self.index += n
         self.normalizar()
         self.selecionar()
-        while PARENT_IS_CLOSED(self.selecionado()):
+        while get([self.selecionado()]+self.selecionado().parents, PARENT_IS_CLOSED):
             self.baixo(1)
     def parar(self):
         self.running = False

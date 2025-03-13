@@ -22,5 +22,5 @@ def Actions(*actions: Action):
                 if action.key == response:
                     return action.run()
             print(f'{Fore.RED}Resposta inválida{Fore.RESET}')
-            print(Cursor.UP(2), end='')
+            print(Cursor.UP(2), flush=True, end='')
     return wrapper

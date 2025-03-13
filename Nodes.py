@@ -53,6 +53,7 @@ class BaseNode:
     def __init__(self, data: dict[Any, Any]):
         self.data = data
         self.parent: Optional[BaseNode] = None
+        self.parents: list[BaseNode] = []
         self.children: list[BaseNode] = []
         self.root: BaseNode = self
         self.id: int = 0
@@ -82,7 +83,7 @@ class BaseNode:
     def __eq__(self, other: Union['BaseNode', Any]):
         return all(map((lambda f: f(self, other)), self.equal_conditions))
 
-    def reconfigure(self, id:int=0, lvl:int=0, root:Optional['BaseNode']=None, parent:Optional['BaseNode']=None):
+    def reconfigure(self, id: int = 0, lvl: int = 0, root: Optional['BaseNode'] = None, parent: Optional['BaseNode'] = None):
         if id == 0:
             id = self.START_FROM
             self.all.clear()
@@ -92,6 +93,7 @@ class BaseNode:
             self.root = root or self
             self.id = id
             self.lvl = lvl
+            self.parents = self.parent.parents + [self.parent] if self.parent else []
             self.root.all.append(self)
             lvl += 1
             for n, child in enumerate(self.children):
